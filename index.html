@@ -339,7 +339,7 @@
                     <h2 class="text-2xl font-light">Nos complace invitarte a nuestra boda</h2>
                     <h3 class="font-handwriting text-6xl wine-red my-4">Confirma tu Asistencia</h3>
                     <p class="text-gray-600 mb-8">Por favor, completa el formulario antes del 1 de Diciembre.</p>
-                    <form id="rsvp-form" action="https://formspree.io/f/xjkepedj" method="POST" class="space-y-6 text-left">
+                    <form id="rsvp-form" class="space-y-6 text-left">
                         <div><label class="font-semibold">¿Confirmas tu asistencia?*</label><div class="flex items-center gap-6 mt-2"><label><input type="radio" name="confirmacion" value="si" required class="mr-2"> Sí, asistiré</label><label><input type="radio" name="confirmacion" value="no" class="mr-2"> No podré asistir</label></div></div>
                         <div><label for="nombre" class="font-semibold">Nombre y Apellido*</label><input type="text" id="nombre" name="nombre" required class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red"></div>
                         <div><label for="whatsapp" class="font-semibold">Número de WhatsApp</label><input type="tel" id="whatsapp" name="whatsapp" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red"></div>
@@ -442,26 +442,38 @@
             // --- Formulario RSVP ---
             const form = document.getElementById('rsvp-form');
             if (form) {
-                form.addEventListener("submit", async function(event) {
-                    event.preventDefault();
+                form.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    // IMPORTANTE: Pega aquí la URL de tu aplicación web que obtuviste de Google.
+                    const scriptURL = 'PEGA_AQUI_LA_URL_DE_TU_APP_WEB'; 
                     const status = document.getElementById('form-status');
-                    const data = new FormData(event.target);
-                    try {
-                        const response = await fetch(event.target.action, {
-                            method: form.method, body: data, headers: {'Accept': 'application/json'}
-                        });
-                        if (response.ok) {
-                            status.textContent = "¡Gracias por confirmar! Tu respuesta ha sido enviada.";
-                            status.style.color = 'green';
-                            form.reset();
-                        } else {
-                            status.textContent = "Oops! Hubo un problema al enviar tu confirmación.";
-                            status.style.color = 'red';
-                        }
-                    } catch (error) {
-                        status.textContent = "Oops! Hubo un problema de conexión. Inténtalo de nuevo.";
+                    const submitButton = form.querySelector('button[type="submit"]');
+
+                    // Verificación simple para asegurar que la URL fue reemplazada
+                    if (scriptURL === 'PEGA_AQUI_LA_URL_DE_TU_APP_WEB') {
+                        status.textContent = 'Error: El formulario no está configurado. Contacta a los novios.';
                         status.style.color = 'red';
+                        return; // Detiene la ejecución si la URL es la de por defecto
                     }
+
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Enviando...';
+                    
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                        .then(response => {
+                            // Aunque la respuesta de CORS pueda ser opaca, una respuesta exitosa
+                            // del servidor (incluso una redirección) significa que el script se ejecutó.
+                            status.textContent = "¡Gracias por confirmar! Tu respuesta ha sido guardada en nuestra lista.";
+                            status.style.color = 'green';
+                            form.style.display = 'none'; // Oculta el formulario para evitar reenvíos
+                        }).catch(error => {
+                            // Este bloque se ejecutará si hay un problema de red real.
+                            console.error('Error!', error.message);
+                            status.textContent = "Oops! Hubo un problema de conexión al enviar tu confirmación.";
+                            status.style.color = 'red';
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Enviar Confirmación';
+                        });
                 });
             }
 
