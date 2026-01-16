@@ -1,214 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Boda - Juan & Sofía</title>
     <link rel="icon" type="image/svg+xml" href="https://www.svgrepo.com/show/34554/love-birds.svg">
 
-    <!-- Open Graph Meta Tags for Social Sharing -->
     <meta property="og:title" content="Nuestra Boda - Juan & Sofía">
-    <meta property="og:description" content="¡Estás invitado a celebrar nuestro amor! Encuentra todos los detalles de nuestro gran día.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/Invitaciones-Chic/Digital-Glam/main/novios%20ejemplo.png">
+    <meta property="og:description"
+        content="¡Estás invitado a celebrar nuestro amor! Encuentra todos los detalles de nuestro gran día.">
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/Invitaciones-Chic/Digital-Glam/main/novios%20ejemplo.png">
     <meta property="og:url" content="https://invitaciones-chic.github.io/Digital-Glam/">
     <meta property="og:type" content="website">
-    
-    <!-- Tailwind CSS -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&family=Great+Vibes&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #FDF8F5; /* Color de fondo por defecto del contenido */
-            transition: background-color 1s ease-in-out;
-            overflow-x: hidden;
-        }
-        .font-handwriting { font-family: 'Great Vibes', cursive; }
-        .font-display { font-family: 'Playfair Display', serif; }
-
-        .hero-bg {
-            background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .wine-red { color: #6D212C; }
-        .bg-wine-red { background-color: #6D212C; }
-        .border-gold { border-color: #D4AF37; }
-        .text-gold { color: #D4AF37; }
-
-        .btn-primary {
-            background-color: #6D212C;
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .btn-primary:hover {
-            background-color: #5b1b24;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-        .countdown-box {
-            background: rgba(109, 33, 44, 0.05);
-            border: 1px solid rgba(109, 33, 44, 0.1);
-        }
-        .timeline::before {
-            content: ''; position: absolute; left: 50%; transform: translateX(-50%);
-            top: 0; bottom: 0; width: 2px; background-color: #D4AF37;
-        }
-        .timeline-item { position: relative; width: 50%; }
-        .timeline-item:nth-child(odd) { left: 0; padding-right: 2rem; text-align: right; }
-        .timeline-item:nth-child(even) { left: 50%; padding-left: 2rem; text-align: left; }
-        .timeline-dot {
-            content: ''; position: absolute; top: 50%; transform: translateY(-50%);
-            width: 16px; height: 16px; border-radius: 50%; background-color: #6D212C;
-            border: 2px solid #FDF8F5;
-        }
-        .timeline-item:nth-child(odd) .timeline-dot { right: -8px; }
-        .timeline-item:nth-child(even) .timeline-dot { left: -8px; }
-        
-        /* --- ESTILOS DEL SOBRE --- */
-        #loader-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #f3e5d8 url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-            z-index: 100; display: flex; justify-content: center; align-items: center;
-            transition: opacity 1.5s ease; perspective: 1500px;
-        }
-        .envelope-wrapper {
-            position: relative; width: 90vw; max-width: 600px;
-            aspect-ratio: 600 / 380;
-            cursor: pointer; transform: rotate(-5deg);
-            transition: transform 0.5s ease;
-        }
-        .envelope-wrapper:hover { transform: rotate(0deg) scale(1.05); }
-        .envelope-body {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-            background: #6D212C url('https://www.transparenttextures.com/patterns/cardboard-flat.png');
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            border-radius: 8px; z-index: 1; border: 1px solid #5b1b24;
-        }
-        .envelope-flap {
-            position: absolute; top: 0; left: 0; width: 100%; height: 55%;
-            background: #6D212C url('https://www.transparenttextures.com/patterns/cardboard-flat.png');
-            transform-origin: top;
-            transition: transform 1s ease-in-out 0.5s;
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            z-index: 3; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
-            border-bottom: 2px solid #5b1b24; /* Línea sutil en la solapa */
-        }
-        .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); }
-
-        .name-tag-on-envelope {
-            position: absolute; top: 25%; left: 50%;
-            transform: translate(-50%, -50%) rotate(-5deg);
-            z-index: 4; padding: 8px 22px; border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.15), 
-                         inset 0 1px 2px rgba(255, 255, 255, 0.8), inset 0 -1px 1px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease; text-align: center; border: 1px solid #C8B8A8;
-            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), 
-                              linear-gradient(135deg, #ffffff 0%, #fbf5ef 50%, #f5ede3 100%);
-        }
-        .name-tag-on-envelope .names {
-            font-family: 'Great Vibes', cursive; color: #6D212C;
-            font-size: 2.5rem; line-height: 1;
-            white-space: nowrap; /* Asegura que los nombres estén en una línea */
-        }
-        .engraved-date {
-            position: absolute; top: 56%; left: 50%;
-            transform: translate(-50%, -50%) rotate(-5deg);
-            z-index: 2; font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem; color: rgba(0, 0, 0, 0.5);
-            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1);
-            letter-spacing: 1px; transition: all 0.5s ease;
-            pointer-events: none;
-        }
-        .envelope-wrapper:hover .name-tag-on-envelope,
-        .envelope-wrapper:hover .engraved-date {
-            transform: translate(-50%, -50%) rotate(0deg);
-        }
-        .click-to-open-prompt {
-            position: absolute; bottom: 30px; left: 50%;
-            transform: translateX(-50%); z-index: 2;
-            color: rgba(255, 255, 255, 0.7);
-            font-family: 'Montserrat', sans-serif; font-size: 0.9rem;
-            text-align: center; display: flex; flex-direction: column;
-            align-items: center; gap: 8px;
-            animation: pulse 2s infinite ease-in-out;
-            pointer-events: none;
-        }
-        
-        .click-to-open-prompt img { width: 50px; height: auto; }
-        .envelope-wrapper.open .name-tag-on-envelope,
-        .envelope-wrapper.open .click-to-open-prompt,
-        .envelope-wrapper.open .engraved-date {
-            transition: opacity 0.5s ease; opacity: 0;
-        }
-
-        /* --- OPTIMIZACIÓN PARA MÓVILES --- */
-        @media (max-width: 640px) {
-            .name-tag-on-envelope {
-                padding: 6px 16px;
-            }
-            .name-tag-on-envelope .names {
-                font-size: 1.9rem; /* Reducir tamaño de fuente de los nombres */
-            }
-            .engraved-date {
-                font-size: 1.25rem; /* Aumentar tamaño de la fecha para que quepa */
-                top: 62%; /* Ajustar posición vertical para evitar solapamiento */
-                white-space: nowrap; /* Asegurar que la fecha esté en una línea */
-            }
-            .click-to-open-prompt {
-                bottom: 8px; /* Bajar el prompt para dar espacio */
-                gap: 4px;
-            }
-            .click-to-open-prompt img {
-                width: 35px; /* Hacer el icono un poco más pequeño */
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.7; }
-            50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
-        }
-
-        .heart {
-            position: absolute; top: 50%; left: 50%;
-            width: 20px; height: 20px; background-color: #8B0000;
-            opacity: 0; animation: fly 4s ease-in-out forwards;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        }
-        @keyframes fly {
-            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(0) rotate(720deg); }
-        }
-        .scroll-reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
-        #music-control-button {
-            position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
-            background-color: #6D212C; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer; z-index: 99; border: 2px solid #D4AF37;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.3s ease;
-        }
-        #music-control-button:hover { transform: scale(1.1); background-color: #5b1b24; }
-        #music-control-button svg { color: #D4AF37; width: 24px; height: 24px; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="bg-wine-red">
-    
-    <!-- 1. Portada / Sobre Interactivo -->
+
     <div id="loader-screen">
+        <!-- Elementos Decorativos -->
+        <div class="decorative-elements">
+            <!-- Pétalos de rosa sutiles -->
+            <svg class="decorative-petal" viewBox="0 0 50 50">
+                <ellipse cx="25" cy="25" rx="20" ry="12" fill="#722F37" transform="rotate(25 25 25)" />
+            </svg>
+            <svg class="decorative-petal" viewBox="0 0 50 50">
+                <ellipse cx="25" cy="25" rx="18" ry="10" fill="#8B3A44" transform="rotate(-15 25 25)" />
+            </svg>
+            <svg class="decorative-petal" viewBox="0 0 50 50">
+                <ellipse cx="25" cy="25" rx="22" ry="14" fill="#5A252C" transform="rotate(45 25 25)" />
+            </svg>
+            <svg class="decorative-petal" viewBox="0 0 50 50">
+                <ellipse cx="25" cy="25" rx="16" ry="10" fill="#722F37" transform="rotate(-30 25 25)" />
+            </svg>
+            <!-- Eucalipto decorativo -->
+            <svg class="decorative-eucalyptus" viewBox="0 0 60 120">
+                <path d="M30 0 Q35 30 30 60 Q25 90 30 120" stroke="#6B7B5C" stroke-width="2" fill="none" />
+                <ellipse cx="20" cy="25" rx="10" ry="6" fill="#8B9D7C" opacity="0.7" />
+                <ellipse cx="40" cy="40" rx="10" ry="6" fill="#8B9D7C" opacity="0.6" />
+                <ellipse cx="18" cy="55" rx="9" ry="5" fill="#8B9D7C" opacity="0.5" />
+                <ellipse cx="42" cy="70" rx="10" ry="6" fill="#8B9D7C" opacity="0.5" />
+                <ellipse cx="22" cy="90" rx="8" ry="5" fill="#8B9D7C" opacity="0.4" />
+            </svg>
+            <svg class="decorative-eucalyptus" viewBox="0 0 60 120">
+                <path d="M30 0 Q35 30 30 60 Q25 90 30 120" stroke="#6B7B5C" stroke-width="2" fill="none" />
+                <ellipse cx="20" cy="25" rx="10" ry="6" fill="#8B9D7C" opacity="0.7" />
+                <ellipse cx="40" cy="40" rx="10" ry="6" fill="#8B9D7C" opacity="0.6" />
+                <ellipse cx="18" cy="55" rx="9" ry="5" fill="#8B9D7C" opacity="0.5" />
+                <ellipse cx="42" cy="70" rx="10" ry="6" fill="#8B9D7C" opacity="0.5" />
+                <ellipse cx="22" cy="90" rx="8" ry="5" fill="#8B9D7C" opacity="0.4" />
+            </svg>
+        </div>
+
+        <!-- Partículas Doradas -->
+        <div class="gold-particles">
+            <div class="gold-particle"></div>
+            <div class="gold-particle"></div>
+            <div class="gold-particle"></div>
+            <div class="gold-particle"></div>
+            <div class="gold-particle"></div>
+            <div class="gold-particle"></div>
+            <div class="gold-particle"></div>
+            <div class="gold-particle"></div>
+        </div>
+
         <div id="envelope" class="envelope-wrapper">
             <div class="envelope-flap"></div>
             <div class="envelope-body"></div>
@@ -216,25 +82,37 @@
                 <span class="names">Juan & Sofía</span>
             </div>
             <div class="engraved-date">14 de Diciembre, 2025</div>
+
+            <!-- Sello de Cera Dorado -->
+            <div class="wax-seal">
+                <div class="wax-seal-circle">
+                    <span class="wax-seal-initials">J&S</span>
+                </div>
+            </div>
+
             <div class="click-to-open-prompt">
-                <img src="https://www.svgrepo.com/show/244558/flowers-bouquet.svg" alt="Tocar para abrir la invitación">
+                <!-- Icono minimalista SVG -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L12 18M12 18L6 12M12 18L18 12" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M4 22H20" stroke-linecap="round" />
+                </svg>
                 <span>Toca para abrir</span>
             </div>
             <div id="hearts-container"></div>
         </div>
     </div>
 
-    <!-- Contenido principal de la invitación (inicialmente oculto) -->
     <div id="invitation-content" class="hidden">
-        <audio id="background-music" loop src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bd/a9/12/bda912a7-1aee-ccf2-8af2-8468879b85f6/mzaf_8135136941607173881.plus.aac.ep.m4a"></audio>
+        <audio id="background-music" loop
+            src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bd/a9/12/bda912a7-1aee-ccf2-8af2-8468879b85f6/mzaf_8135136941607173881.plus.aac.ep.m4a"></audio>
 
         <button id="music-control-button" aria-label="Reproducir o pausar música">
             <span id="play-icon" data-lucide="play"></span>
             <span id="pause-icon" data-lucide="pause" class="hidden"></span>
         </button>
 
-        <!-- 2. Apertura -->
-        <header class="h-screen w-full flex flex-col items-center justify-center text-center p-4 hero-bg text-white relative">
+        <header
+            class="h-screen w-full flex flex-col items-center justify-center text-center p-4 hero-bg text-white relative">
             <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             <div class="relative z-10 scroll-reveal">
                 <h1 class="font-handwriting text-8xl md:text-9xl">Juan & Sofía</h1>
@@ -243,100 +121,153 @@
                 </p>
             </div>
         </header>
-        
+
         <main class="text-gray-800">
-            <!-- 3. Nos casamos (Cuenta regresiva) -->
             <section id="nos-casamos" class="py-20 px-4 scroll-reveal">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="font-display text-2xl md:text-3xl wine-red font-light">Celebrando nuestro amor eterno...</h2>
+                    <h2 class="font-display text-2xl md:text-3xl wine-red font-light">Celebrando nuestro amor eterno...
+                    </h2>
                     <h3 class="font-handwriting text-5xl md:text-6xl my-4 wine-red">¡Nos Casamos!</h3>
                     <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-4 max-w-lg mx-auto mt-8">
-                        <div class="countdown-box p-4 rounded-lg"><p id="days" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p><p class="text-sm">Días</p></div>
-                        <div class="countdown-box p-4 rounded-lg"><p id="hours" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p><p class="text-sm">Horas</p></div>
-                        <div class="countdown-box p-4 rounded-lg"><p id="minutes" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p><p class="text-sm">Minutos</p></div>
-                        <div class="countdown-box p-4 rounded-lg"><p id="seconds" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p><p class="text-sm">Segundos</p></div>
+                        <div class="countdown-box p-4 rounded-lg">
+                            <p id="days" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p>
+                            <p class="text-sm">Días</p>
+                        </div>
+                        <div class="countdown-box p-4 rounded-lg">
+                            <p id="hours" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p>
+                            <p class="text-sm">Horas</p>
+                        </div>
+                        <div class="countdown-box p-4 rounded-lg">
+                            <p id="minutes" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p>
+                            <p class="text-sm">Minutos</p>
+                        </div>
+                        <div class="countdown-box p-4 rounded-lg">
+                            <p id="seconds" class="font-display text-3xl md:text-5xl font-bold wine-red">0</p>
+                            <p class="text-sm">Segundos</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 4, 5 y 6. Ceremonias y Celebración -->
             <section id="ceremonias" class="py-20 px-4 bg-gray-50 scroll-reveal">
                 <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-gold flex flex-col justify-between transition-transform transform hover:-translate-y-2">
+                    <div
+                        class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-gold flex flex-col justify-between transition-transform transform hover:-translate-y-2">
                         <div>
                             <span data-lucide="gem" class="w-12 h-12 mx-auto mb-4 text-gold"></span>
                             <h3 class="font-handwriting text-5xl wine-red mb-2">Matrimonio Civil</h3>
                             <p class="font-bold text-lg text-gray-700">10:00 AM</p>
-                            <p class="text-gray-600 mt-2 min-h-[6rem]">Registro Civil Nro. 4, Av. Busch, Santa Cruz de la Sierra</p>
+                            <p class="text-gray-600 mt-2 min-h-[6rem]">Registro Civil Nro. 4, Av. Busch, Santa Cruz de
+                                la Sierra</p>
                         </div>
-                        <a href="https://maps.app.goo.gl/your-civil-ceremony-link" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center btn-primary text-sm py-3 px-6 rounded-full w-full"><span data-lucide="map-pin" class="mr-2 h-4 w-4"></span>Ver en Google Maps</a>
+                        <a href="https://maps.app.goo.gl/your-civil-ceremony-link" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-6 inline-flex items-center justify-center btn-primary text-sm py-3 px-6 rounded-full w-full"><span
+                                data-lucide="map-pin" class="mr-2 h-4 w-4"></span>Ver en Google Maps</a>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-gold flex flex-col justify-between transition-transform transform hover:-translate-y-2">
+                    <div
+                        class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-gold flex flex-col justify-between transition-transform transform hover:-translate-y-2">
                         <div>
                             <span data-lucide="church" class="w-12 h-12 mx-auto mb-4 text-gold"></span>
                             <h3 class="font-handwriting text-5xl wine-red mb-2">Matrimonio Religioso</h3>
                             <p class="font-bold text-lg text-gray-700">12:00 PM</p>
-                            <p class="text-gray-600 mt-2 min-h-[6rem]">Iglesia de los Remedios, Calle La Merced, Santa Cruz de la Sierra</p>
+                            <p class="text-gray-600 mt-2 min-h-[6rem]">Iglesia de los Remedios, Calle La Merced, Santa
+                                Cruz de la Sierra</p>
                         </div>
-                        <a href="https://maps.app.goo.gl/your-religious-ceremony-link" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center btn-primary text-sm py-3 px-6 rounded-full w-full"><span data-lucide="map-pin" class="mr-2 h-4 w-4"></span>Ver en Google Maps</a>
+                        <a href="https://maps.app.goo.gl/your-religious-ceremony-link" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-6 inline-flex items-center justify-center btn-primary text-sm py-3 px-6 rounded-full w-full"><span
+                                data-lucide="map-pin" class="mr-2 h-4 w-4"></span>Ver en Google Maps</a>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-gold flex flex-col justify-between transition-transform transform hover:-translate-y-2">
+                    <div
+                        class="bg-white p-8 rounded-lg shadow-xl border-t-4 border-gold flex flex-col justify-between transition-transform transform hover:-translate-y-2">
                         <div>
                             <span data-lucide="party-popper" class="w-12 h-12 mx-auto mb-4 text-gold"></span>
                             <h3 class="font-handwriting text-5xl wine-red mb-2">Celebración</h3>
                             <p class="font-bold text-lg text-gray-700">Desde las 2:00 PM</p>
-                            <p class="text-gray-600 mt-2 min-h-[6rem]">Salón "El Jardín", Av. Banzer, Km 7, Santa Cruz de la Sierra</p>
+                            <p class="text-gray-600 mt-2 min-h-[6rem]">Salón "El Jardín", Av. Banzer, Km 7, Santa Cruz
+                                de la Sierra</p>
                         </div>
-                        <a href="https://maps.app.goo.gl/your-reception-link" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center btn-primary text-sm py-3 px-6 rounded-full w-full"><span data-lucide="map-pin" class="mr-2 h-4 w-4"></span>Ver en Google Maps</a>
+                        <a href="https://maps.app.goo.gl/your-reception-link" target="_blank" rel="noopener noreferrer"
+                            class="mt-6 inline-flex items-center justify-center btn-primary text-sm py-3 px-6 rounded-full w-full"><span
+                                data-lucide="map-pin" class="mr-2 h-4 w-4"></span>Ver en Google Maps</a>
                     </div>
                 </div>
             </section>
 
-            <!-- 7. Itinerario -->
             <section id="itinerario" class="py-20 px-4 scroll-reveal">
-                 <div class="max-w-3xl mx-auto text-center">
+                <div class="max-w-3xl mx-auto text-center">
                     <h2 class="font-handwriting text-6xl wine-red mb-12">Itinerario del Día</h2>
                     <div class="relative timeline">
-                        <div class="timeline-item"><div class="timeline-dot"></div><div class="p-4 bg-white rounded-lg shadow-md"><p class="font-bold wine-red">10:00 AM</p><p>Ceremonia Civil</p></div></div>
-                        <div class="timeline-item"><div class="timeline-dot"></div><div class="p-4 bg-white rounded-lg shadow-md"><p class="font-bold wine-red">12:00 PM</p><p>Ceremonia Religiosa</p></div></div>
-                        <div class="timeline-item"><div class="timeline-dot"></div><div class="p-4 bg-white rounded-lg shadow-md"><p class="font-bold wine-red">2:00 PM</p><p>Recepción y Almuerzo</p></div></div>
-                        <div class="timeline-item"><div class="timeline-dot"></div><div class="p-4 bg-white rounded-lg shadow-md"><p class="font-bold wine-red">4:00 PM</p><p>¡Comienza la Fiesta!</p></div></div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <p class="font-bold wine-red">10:00 AM</p>
+                                <p>Ceremonia Civil</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <p class="font-bold wine-red">12:00 PM</p>
+                                <p>Ceremonia Religiosa</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <p class="font-bold wine-red">2:00 PM</p>
+                                <p>Recepción y Almuerzo</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <p class="font-bold wine-red">4:00 PM</p>
+                                <p>¡Comienza la Fiesta!</p>
+                            </div>
+                        </div>
                     </div>
-                 </div>
+                </div>
             </section>
 
-            <!-- 8. Padrinos y Testigos -->
             <section id="padrinos-testigos" class="py-20 px-4 bg-gray-50 scroll-reveal">
                 <div class="max-w-4xl mx-auto text-center">
-                    
-                    <!-- Padrinos de Boda -->
+
                     <div class="mb-20">
                         <h3 class="font-handwriting text-6xl wine-red">Padrinos de Boda</h3>
                         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
                             <div class="flex flex-col items-center">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3" alt="Foto del Padrino Carlos Pérez" class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3"
+                                    alt="Foto del Padrino Carlos Pérez"
+                                    class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
                                 <h4 class="font-display text-2xl mt-6">Carlos Pérez</h4>
                                 <p class="text-gray-600">Padrino</p>
                             </div>
                             <div class="flex flex-col items-center">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3" alt="Foto de la Madrina Ana García" class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3"
+                                    alt="Foto de la Madrina Ana García"
+                                    class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
                                 <h4 class="font-display text-2xl mt-6">Ana García</h4>
                                 <p class="text-gray-600">Madrina</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Testigos de Boda -->
                     <div>
                         <h3 class="font-handwriting text-6xl wine-red">Testigos de Boda</h3>
                         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
                             <div class="flex flex-col items-center">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3" alt="Foto del Testigo Luis Fernández" class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3"
+                                    alt="Foto del Testigo Luis Fernández"
+                                    class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
                                 <h4 class="font-display text-2xl mt-6">Luis Fernández</h4>
                                 <p class="text-gray-600">Testigo del novio</p>
                             </div>
                             <div class="flex flex-col items-center">
-                                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3" alt="Foto de la Testigo María Rodríguez" class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
+                                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=400&auto=format&fit=crop&ixlibrb-4.0.3"
+                                    alt="Foto de la Testigo María Rodríguez"
+                                    class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-gold">
                                 <h4 class="font-display text-2xl mt-6">María Rodríguez</h4>
                                 <p class="text-gray-600">Testigo de la novia</p>
                             </div>
@@ -345,216 +276,108 @@
                 </div>
             </section>
 
-            <!-- 9. Mesa de regalos -->
             <section id="regalos" class="py-20 px-4 text-center scroll-reveal">
                 <div class="max-w-3xl mx-auto">
                     <h2 class="font-handwriting text-6xl wine-red mb-6">Mesa de Regalos</h2>
-                    <p class="text-gray-600 mb-8">Su presencia es nuestro mejor regalo, pero si desean tener un detalle con nosotros, aquí les dejamos algunas opciones.</p>
+                    <p class="text-gray-600 mb-8">Su presencia es nuestro mejor regalo, pero si desean tener un detalle
+                        con nosotros, aquí les dejamos algunas opciones.</p>
                     <div class="flex flex-col md:flex-row justify-center items-center gap-12">
-                        <div><h3 class="font-display text-xl font-semibold mb-4">Opción 1: Regalo Monetario</h3><img src="https://placehold.co/250x250/FFFFFF/333333?text=QR+para+Regalo" alt="Código QR para regalos" class="mx-auto rounded-lg shadow-md"></div>
-                        <div><h3 class="font-display text-xl font-semibold mb-4">Opción 2: Tienda Amiga</h3><p class="mb-4">Visita nuestra lista de regalos en:</p><a href="#" target="_blank" class="btn-primary py-3 px-6 rounded-full font-semibold">Tienda "Hogar Feliz"</a></div>
+                        <div>
+                            <h3 class="font-display text-xl font-semibold mb-4">Opción 1: Regalo Monetario</h3><img
+                                src="https://placehold.co/250x250/FFFFFF/333333?text=QR+para+Regalo"
+                                alt="Código QR para regalos" class="mx-auto rounded-lg shadow-md">
+                        </div>
+                        <div>
+                            <h3 class="font-display text-xl font-semibold mb-4">Opción 2: Tienda Amiga</h3>
+                            <p class="mb-4">Visita nuestra lista de regalos en:</p><a href="#" target="_blank"
+                                class="btn-primary py-3 px-6 rounded-full font-semibold">Tienda "Hogar Feliz"</a>
+                        </div>
                     </div>
                 </div>
             </section>
-            
-            <!-- 10. Menú y Dress Code -->
+
             <section id="info-extra" class="py-20 px-4 bg-gray-50 scroll-reveal">
                 <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-                    <div class="text-center"><span data-lucide="utensils-crossed" class="h-12 w-12 mx-auto wine-red mb-4"></span><h3 class="font-handwriting text-5xl wine-red mb-4">Menú Boliviano</h3><ul class="text-gray-600 space-y-2"><li><strong>Entradas:</strong> Deliciosas Salteñas y Cuñapés.</li><li><strong>Almuerzo:</strong> Tradicional Charque y Pique Macho.</li><li><strong>Cena:</strong> Sabrosa Sopa de Maní y Majadito.</li><li><strong>Bebidas:</strong> Refrescante Mocochinchi y vinos locales.</li></ul></div>
-                    <div class="text-center"><span data-lucide="shirt" class="h-12 w-12 mx-auto wine-red mb-4"></span><h3 class="font-handwriting text-5xl wine-red mb-4">Código de Vestimenta</h3><p class="font-display text-lg font-semibold">Formal y Elegante</p><p class="text-gray-600 mt-2">Agradeceríamos que las damas eviten el color blanco, reservado para la novia.</p></div>
+                    <div class="text-center"><span data-lucide="utensils-crossed"
+                            class="h-12 w-12 mx-auto wine-red mb-4"></span>
+                        <h3 class="font-handwriting text-5xl wine-red mb-4">Menú Boliviano</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li><strong>Entradas:</strong> Deliciosas Salteñas y Cuñapés.</li>
+                            <li><strong>Almuerzo:</strong> Tradicional Charque y Pique Macho.</li>
+                            <li><strong>Cena:</strong> Sabrosa Sopa de Maní y Majadito.</li>
+                            <li><strong>Bebidas:</strong> Refrescante Mocochinchi y vinos locales.</li>
+                        </ul>
+                    </div>
+                    <div class="text-center"><span data-lucide="shirt" class="h-12 w-12 mx-auto wine-red mb-4"></span>
+                        <h3 class="font-handwriting text-5xl wine-red mb-4">Código de Vestimenta</h3>
+                        <p class="font-display text-lg font-semibold">Formal y Elegante</p>
+                        <p class="text-gray-600 mt-2">Agradeceríamos que las damas eviten el color blanco, reservado
+                            para la novia.</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- 11. Confirmar asistencia (RSVP) -->
             <section id="rsvp" class="py-20 px-4 scroll-reveal">
                 <div class="max-w-2xl mx-auto text-center">
                     <h2 class="text-2xl font-light">Nos complace invitarte a nuestra boda</h2>
                     <h3 class="font-handwriting text-6xl wine-red my-4">Confirma tu Asistencia</h3>
                     <p class="text-gray-600 mb-8">Por favor, completa el formulario antes del 1 de Diciembre.</p>
                     <form id="rsvp-form" class="space-y-6 text-left">
-                        <div><label class="font-semibold">¿Confirmas tu asistencia?*</label><div class="flex items-center gap-6 mt-2">
-                            <label><input type="radio" name="Confirmacion" value="si" required class="mr-2" id="asiste-si"> Sí, asistiré</label>
-                            <label><input type="radio" name="Confirmacion" value="no" class="mr-2" id="asiste-no"> No podré asistir</label>
-                        </div></div>
-                        <div><label for="nombre" class="font-semibold">Nombre y Apellido*</label><input type="text" id="nombre" name="Nombre" required class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red"></div>
-                        <div><label for="whatsapp" class="font-semibold">Número de WhatsApp</label><input type="tel" id="whatsapp" name="Whatsapp" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red"></div>
-                        
-                        <div id="asistencia-details" class="space-y-6">
-                            <div><label for="acompanantes" class="font-semibold">Número de acompañantes (incluyéndote)</label><input type="number" id="acompanantes" name="Acompanantes" min="1" value="1" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red"></div>
-                            <div><label for="transporte" class="font-semibold">¿Necesitarás transporte?</label><select id="transporte" name="Transporte" class="w-full mt-1 p-2 border border-gray-300 rounded-md bg-white"><option>No, gracias</option><option>Sí, para 1 persona</option><option>Sí, para 2 personas</option></select></div>
+                        <div><label class="font-semibold">¿Confirmas tu asistencia?*</label>
+                            <div class="flex items-center gap-6 mt-2">
+                                <label><input type="radio" name="Confirmacion" value="si" required class="mr-2"
+                                        id="asiste-si"> Sí, asistiré</label>
+                                <label><input type="radio" name="Confirmacion" value="no" class="mr-2" id="asiste-no">
+                                    No podré asistir</label>
+                            </div>
                         </div>
-                        
-                        <div>
-                            <label for="comentarios" id="comentarios-label" class="font-semibold">Comentarios o alergias alimentarias</label>
-                            <textarea id="comentarios" name="Comentarios" rows="3" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red"></textarea>
+                        <div><label for="nombre" class="font-semibold">Nombre y Apellido*</label><input type="text"
+                                id="nombre" name="Nombre" required
+                                class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red">
+                        </div>
+                        <div><label for="whatsapp" class="font-semibold">Número de WhatsApp</label><input type="tel"
+                                id="whatsapp" name="Whatsapp"
+                                class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red">
                         </div>
 
-                        <div class="text-center"><button type="submit" class="btn-primary font-bold py-3 px-12 rounded-full shadow-lg text-lg">Enviar Confirmación</button></div>
+                        <div id="asistencia-details" class="space-y-6">
+                            <div><label for="acompanantes" class="font-semibold">Número de acompañantes
+                                    (incluyéndote)</label><input type="number" id="acompanantes" name="Acompanantes"
+                                    min="1" value="1"
+                                    class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red">
+                            </div>
+                            <div><label for="transporte" class="font-semibold">¿Necesitarás transporte?</label><select
+                                    id="transporte" name="Transporte"
+                                    class="w-full mt-1 p-2 border border-gray-300 rounded-md bg-white">
+                                    <option>No, gracias</option>
+                                    <option>Sí, para 1 persona</option>
+                                    <option>Sí, para 2 personas</option>
+                                </select></div>
+                        </div>
+
+                        <div>
+                            <label for="comentarios" id="comentarios-label" class="font-semibold">Comentarios o alergias
+                                alimentarias</label>
+                            <textarea id="comentarios" name="Comentarios" rows="3"
+                                class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-wine-red focus:border-wine-red"></textarea>
+                        </div>
+
+                        <div class="text-center"><button type="submit"
+                                class="btn-primary font-bold py-3 px-12 rounded-full shadow-lg text-lg">Enviar
+                                Confirmación</button></div>
                     </form>
                     <p id="form-status" class="mt-6 text-lg"></p>
                 </div>
             </section>
         </main>
-        
+
         <footer class="text-center py-8 bg-gray-100 text-gray-800">
             <p class="font-handwriting text-4xl wine-red">¡Te esperamos!</p>
             <p class="mt-2 text-gray-600">Juan & Sofía | Diciembre 2025</p>
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializa los íconos de Lucide
-            try {
-                lucide.createIcons();
-            } catch (e) { console.error("Lucide icons failed to initialize.", e); }
-            
-            // --- Constantes del DOM ---
-            const loaderScreen = document.getElementById('loader-screen');
-            const envelope = document.getElementById('envelope');
-            const invitationContent = document.getElementById('invitation-content');
-            const backgroundMusic = document.getElementById('background-music');
-            const musicControlButton = document.getElementById('music-control-button');
-            const playIcon = document.getElementById('play-icon');
-            const pauseIcon = document.getElementById('pause-icon');
-            const heartsContainer = document.getElementById('hearts-container');
-
-            // --- Lógica para abrir el sobre ---
-            if (envelope) {
-                envelope.addEventListener('click', () => {
-                    if (envelope.classList.contains('open')) return;
-                    
-                    envelope.classList.add('open');
-                    
-                    // Explosión de corazones
-                    for (let i = 0; i < 25; i++) {
-                        const heart = document.createElement('div');
-                        heart.classList.add('heart');
-                        const x = (Math.random() - 0.5) * 500;
-                        const y = (Math.random() - 0.5) * 500 - 150;
-                        heart.style.setProperty('--x', `${x}px`);
-                        heart.style.setProperty('--y', `${y}px`);
-                        heart.style.animationDelay = `${Math.random()}s`;
-                        heartsContainer.appendChild(heart);
-                    }
-
-                    backgroundMusic.play().catch(error => console.log("La reproducción automática de música fue bloqueada por el navegador."));
-                    
-                    setTimeout(() => { loaderScreen.style.opacity = '0'; }, 2000);
-                    
-                    setTimeout(() => {
-                        loaderScreen.style.display = 'none';
-                        invitationContent.classList.remove('hidden');
-                        document.body.classList.remove('bg-wine-red');
-                    }, 3500);
-
-                }, { once: true });
-            }
-
-            // --- Control de Música ---
-            if (musicControlButton && backgroundMusic) {
-                const toggleMusicIcons = () => {
-                    playIcon.classList.toggle('hidden', !backgroundMusic.paused);
-                    pauseIcon.classList.toggle('hidden', backgroundMusic.paused);
-                };
-                backgroundMusic.addEventListener('play', toggleMusicIcons);
-                backgroundMusic.addEventListener('pause', toggleMusicIcons);
-                
-                musicControlButton.addEventListener('click', () => {
-                    backgroundMusic.paused ? backgroundMusic.play() : backgroundMusic.pause();
-                });
-            }
-
-            // --- Cuenta Regresiva ---
-            const countdownDate = new Date("Dec 14, 2025 10:00:00").getTime();
-            const countdownFunction = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countdownDate - now;
-                
-                if (distance > 0) {
-                    document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
-                } else {
-                    clearInterval(countdownFunction);
-                    document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-2xl font-bold'>¡El gran día ha llegado!</div>";
-                }
-            }, 1000);
-
-            // --- Formulario RSVP ---
-            const form = document.getElementById('rsvp-form');
-            if (form) {
-                const asisteSi = document.getElementById('asiste-si');
-                const asisteNo = document.getElementById('asiste-no');
-                const asistenciaDetails = document.getElementById('asistencia-details');
-                const comentariosLabel = document.getElementById('comentarios-label');
-
-                // Función para actualizar la vista del formulario
-                const updateFormView = () => {
-                    if (asisteNo.checked) {
-                        asistenciaDetails.style.display = 'none';
-                        comentariosLabel.textContent = '¡Te vamos a extrañar! Si lo deseas, puedes dejarnos un mensaje.';
-                    } else {
-                        asistenciaDetails.style.display = 'block';
-                        comentariosLabel.textContent = 'Comentarios o alergias alimentarias';
-                    }
-                };
-                
-                // Añadir listeners a los radio buttons
-                asisteSi.addEventListener('change', updateFormView);
-                asisteNo.addEventListener('change', updateFormView);
-
-                // Estado inicial del formulario
-                updateFormView();
-
-                form.addEventListener("submit", function(e) {
-                    e.preventDefault();
-                    const scriptURL = 'https://script.google.com/macros/s/AKfycbx9EGxUaVtJjB9wZ-emJSZOUJhrIsVAbANlXgh9FRXiIbuZMmpBVv-kPnWlLx0LBkJ1/exec'; 
-                    const status = document.getElementById('form-status');
-                    const submitButton = form.querySelector('button[type="submit"]');
-                    
-                    const formData = new FormData(form);
-                    const confirmacionValue = formData.get('Confirmacion');
-
-                    submitButton.disabled = true;
-                    submitButton.textContent = 'Enviando...';
-                    
-                    status.style.color = '';
-                    status.classList.remove('wine-red');
-
-                    fetch(scriptURL, { method: 'POST', body: formData})
-                        .then(response => {
-                            if (confirmacionValue === 'no') {
-                                status.textContent = "Lamentamos que no puedas acompañarnos. Gracias por hacérnoslo saber. ¡Te enviamos un fuerte abrazo!";
-                            } else {
-                                status.textContent = "¡Gracias por confirmar! Tu respuesta ha sido guardada. ¡Te esperamos!";
-                            }
-                            status.classList.add('wine-red');
-                            form.style.display = 'none';
-                        }).catch(error => {
-                            console.error('Error!', error.message);
-                            status.textContent = "Oops! Hubo un problema de conexión al enviar tu confirmación.";
-                            status.style.color = 'red';
-                            submitButton.disabled = false;
-                            submitButton.textContent = 'Enviar Confirmación';
-                        });
-                });
-            }
-
-            // --- Animación al hacer scroll (OPTIMIZADO) ---
-            const scrollElements = document.querySelectorAll(".scroll-reveal");
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            scrollElements.forEach(el => observer.observe(el));
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
-</html>
 
+</html>
