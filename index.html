@@ -102,6 +102,9 @@
         </div>
     </div>
 
+    <!-- Transición de Pétalos de Rosa -->
+    <div id="petals-screen" class="petals-transition"></div>
+
     <div id="invitation-content" class="hidden">
         <audio id="background-music" loop
             src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bd/a9/12/bda912a7-1aee-ccf2-8af2-8468879b85f6/mzaf_8135136941607173881.plus.aac.ep.m4a"></audio>
@@ -111,13 +114,23 @@
             <span id="pause-icon" data-lucide="pause" class="hidden"></span>
         </button>
 
-        <header
-            class="h-screen w-full flex flex-col items-center justify-center text-center p-4 hero-bg text-white relative">
-            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-            <div class="relative z-10 scroll-reveal">
-                <h1 class="font-handwriting text-8xl md:text-9xl">Juan & Sofía</h1>
-                <p class="mt-6 text-2xl md:text-4xl max-w-2xl mx-auto font-light">
-                    Con la bendición de nuestros padres, tenemos el honor de invitarte a celebrar nuestro amor.
+        <!-- Header con Lluvia de Corazones Canvas -->
+        <header id="hero-section" class="hero-canvas-container">
+            <!-- Imagen de Fondo: Elegante y Romántica -->
+            <img id="hero-bg-image"
+                src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop"
+                alt="Fondo Elegante de Boda">
+
+
+
+            <!-- Contenido de Texto Centrado -->
+            <div class="hero-text-overlay scroll-reveal">
+                <h1 class="hero-title">Juan y Sofía</h1>
+                <p class="hero-date">14 de Diciembre, 2025</p>
+                <p class="hero-message">
+                    Con la bendición de nuestros padres,
+                    tenemos el honor de invitarte a
+                    celebrar nuestro amor.
                 </p>
             </div>
         </header>
