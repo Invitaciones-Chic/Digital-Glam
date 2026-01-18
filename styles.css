@@ -924,8 +924,8 @@ body {
 /* --- Botón de Música Premium --- */
 #music-control-button {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    bottom: 20px;
+    right: 20px;
     width: 50px;
     height: 50px;
     background: linear-gradient(135deg, var(--wine-deep) 0%, var(--wine-dark) 100%);
@@ -1095,9 +1095,13 @@ body {
     }
 }
 
-/* --- Botón de Música en Móvil (más pequeño) --- */
+/* --- Botón de Música en Móvil (arriba izquierda) --- */
 @media (max-width: 640px) {
     #music-control-button {
+        bottom: auto;
+        right: auto;
+        top: 20px;
+        left: 20px;
         width: 44px;
         height: 44px;
     }
