@@ -1094,3 +1094,20 @@ body {
         font-size: 1.3rem;
     }
 }
+
+/* --- Botón de Música en Móvil (arriba izquierda) --- */
+@media (max-width: 640px) {
+    #music-control-button {
+        bottom: auto;
+        top: 20px;
+        right: auto;
+        left: 20px;
+        width: 44px;
+        height: 44px;
+    }
+
+    #music-control-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
