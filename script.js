@@ -167,11 +167,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         form.addEventListener("submit", function (e) {
             e.preventDefault();
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbx9EGxUaVtJjB9wZ-emJSZOUJhrIsVAbANlXgh9FRXiIbuZMmpBVv-kPnWlLx0LBkJ1/exec';
+
+            // ═══════════════════════════════════════════════════════════════
+            // 🔧 CONFIGURACIÓN DEL CLIENTE - CAMBIAR PARA CADA CLIENTE
+            // ═══════════════════════════════════════════════════════════════
+            const CLIENT_ID = 'demo';  // ← Cambiar por el ID del cliente (ej: 'juansofia2025')
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz3cbMmMWL0Xjh0QLIoDgh3-JO-mxrTDkOkOkCcz8fEuHdkOi1IqWcdJv_se7Z8bnYC/exec';
+            // ═══════════════════════════════════════════════════════════════
+
             const status = document.getElementById('form-status');
             const submitButton = form.querySelector('button[type="submit"]');
 
             const formData = new FormData(form);
+            formData.append('ClientId', CLIENT_ID);  // ← Envía el ID del cliente al backend
             const confirmacionValue = formData.get('Confirmacion');
 
             submitButton.disabled = true;
